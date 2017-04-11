@@ -3,6 +3,8 @@ Number recognition neural network
 
 Mount a neural network able to recognize hand-written numbers.
 
+![Screenshot](screenshot.png)
+
 
 ## Install
 
