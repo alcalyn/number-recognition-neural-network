@@ -1,0 +1,7 @@
+#zbeubeu {
+    width: 400px;
+    height: 400px;
+}
+#zbeubeu-thumb img {
+    image-rendering: optimizeSpeed;
+}

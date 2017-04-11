@@ -1,0 +1,21 @@
+{
+  "name": "alcalyn-neural-front",
+  "description": "Write a number, let neural network recognize it.",
+  "main": "",
+  "authors": [
+    "alcalyn"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "drawingboard.js": "^0.4.6",
+    "autobahn-old-version": "autobahn-old#^0.8.2"
+  }
+}

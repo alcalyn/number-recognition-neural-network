@@ -1,0 +1,52 @@
+version: '2'
+
+services:
+    rest-api:
+        image: nginx:latest
+        ports:
+            - 8580:80
+        volumes:
+            - .:/var/www/html/
+            - ./docker/rest-api/nginx.conf:/etc/nginx/conf.d/default.conf
+        links:
+            - php-fpm
+
+    websocket-server:
+        container_name: neural-ws
+        build: docker/php-fpm
+        command: php bin/websocket-server
+        ports:
+            - 8582:8482
+        volumes:
+            - .:/var/www/html/
+
+    php-fpm:
+        container_name: neural-php
+        build: docker/php-fpm
+        volumes:
+            - .:/var/www/html/
+        links:
+            - database
+            - websocket-server
+
+    database:
+        container_name: neural-database
+        image: mariadb
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            PMA_HOST: database
+        ports:
+            - 8581:80
+
+    nodejs:
+        image: monostream/nodejs-gulp-bower
+        container_name: neural-nodejs
+        command: tail -f /dev/null
+        volumes:
+            - ./www/lets-go/:/var/www/html/
+        working_dir: /var/www/html/
